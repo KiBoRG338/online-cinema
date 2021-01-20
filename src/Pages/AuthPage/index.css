@@ -1,0 +1,59 @@
+.form{
+    margin: 5% 30%;
+    padding: 20px;
+    border: 2px solid #1ABC9C;
+    border-radius: 4px;
+}
+
+.selectAuth{
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.selectAuth button{
+    margin: 0 auto;
+    padding: 5px 50px;
+}
+
+.selectAuth button:active {
+    color: #01a715;
+}
+
+.selectedButton{
+    color: white;
+    background-color:#1ABC9C;
+    border-radius: 5px;  
+}
+.selectedButton:hover {
+    box-shadow: inset 0 0 0 20rem var(--darken-1);
+}
+
+.unSelectedButton{
+    color: black;
+    background-color: white;
+    border-radius: 5px;  
+}
+.unSelectedButton:hover {
+    box-shadow: inset 0 0 0 20rem var(--darken-1);
+}
+
+@media (max-width: 1200px) {
+    .selectAuth button {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .selectAuth button {
+        margin: 0 auto;
+    }
+}
+
+
+
+@media (max-width: 992px) {
+    .form{
+        margin: 0 auto;
+    }   
+}
+

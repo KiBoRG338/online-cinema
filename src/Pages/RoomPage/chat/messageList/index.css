@@ -1,0 +1,28 @@
+.message-list{
+    list-style-type: none;
+    overflow-y: scroll;
+    height: 570px;
+    overflow-x: auto;
+}
+
+.message-list div {
+    margin-left: -25px;
+}
+
+.sender{
+    color: red;
+}
+
+.recipient{
+    color: blue;
+}
+
+.message{
+    margin: 0px 0;
+    background-color: #1ABC9C;
+    padding: 4px 8px;
+    border-radius: 8px;
+    color: White;
+    white-space: pre-wrap;
+    overflow: hidden;
+}
