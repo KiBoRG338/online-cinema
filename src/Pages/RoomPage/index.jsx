@@ -37,10 +37,14 @@ class RoomPage extends React.Component {
       inviteCode: '',
       roomName: '',
       isOwner: false,
-      inviteCodeInRoom: 'Хочешь пригласить друзей?',
+      inviteCodeInRoom: 'Do you want to invite friends?',
       messages: []
     }
     this.sendMessage = this.sendMessage.bind(this);
+  }
+
+  ref = player => {
+    this.player = player;
   }
 
   componentDidMount() {
@@ -72,7 +76,7 @@ class RoomPage extends React.Component {
         })
         .catch(error => {
           console.log(error);
-          toast.error("Не удалось загрузить данные.");
+          toast.error("Oops, failed to load data.");
           setTimeout(()=> this.props.history.push("/"), 1000)
         });
         axios({
@@ -90,7 +94,7 @@ class RoomPage extends React.Component {
           })
           .catch(error => {
             console.log(error);
-            toast.error("Не удалось загрузить данные чата.");
+            toast.error("Oops, failed to load chat data.");
           });
         axios({
           method: 'get',
@@ -102,13 +106,13 @@ class RoomPage extends React.Component {
           .then(response => {
             if(response.data.status){
               this.setState({
-                inviteCodeInRoom: `Многоразовый код: ${response.data.code}`
+                inviteCodeInRoom: `Reusable code: ${response.data.code}`
               })
             }
           })
           .catch(error => {
             console.log(error);
-            toast.error("Не удалось получить инвайт код.");
+            toast.error("Oops, failed to get the invite code.");
           });
     } else {
       axios({
@@ -126,7 +130,7 @@ class RoomPage extends React.Component {
         })
         .catch(error => {
           console.log(error);
-          toast.error("Не удалось загрузить данные.");
+          toast.error("Oops, failed to load data.");
         });
     }
     socket.on('msgToClient', (message) => {
@@ -140,7 +144,9 @@ class RoomPage extends React.Component {
     })
     socket.on('updatePlayedTime', (time) => {
       this.props.playedTime(time);
-      this.player.seekTo(time, 'seconds');
+      if(this.player !== null){
+        this.player.seekTo(time, 'seconds');
+      }
     })
   }
 
@@ -151,10 +157,6 @@ class RoomPage extends React.Component {
         isOwner: false
       })
     }
-  }
-
-  ref = player => {
-    this.player = player;
   }
 
   handleUpdateUrl = (newUrl) => {
@@ -225,10 +227,10 @@ class RoomPage extends React.Component {
       })
         .then(response => {
           this.props.roomAdd({ id: response.data._id, name: response.data.name })
-          toast.success(`Вы успешно вошли в комнату "${response.data.name}"`);
+          toast.success(`You have succesfully entered the "${response.data.name}"`);
           this.updateInviteState();
         })
-        .catch(error => toast.error("Инвайт-код неверен."));
+        .catch(error => toast.error("Invite-code is invalid."));
 
   }
 
@@ -245,13 +247,14 @@ class RoomPage extends React.Component {
     })
       .then(response => {
         this.props.roomAdd({ id: response.data._id, name: response.data.name })
-        toast.success(`Вы создали комнату "${response.data.name}"`);
+        toast.success(`You created the "${response.data.name}"`);
         this.updatecreateRoomState();
       })
-      .catch(error => toast.error("Комната с таким названием уже существует."));
+      .catch(error => toast.error("Room with this name already does exist."));
   }
 
   getInviteCode = () => {
+    console.log('getInviteCode', 'rabotaet')
     axios({
       method: 'patch',
       url: endpoint + `/api/v1/invites/${roomId}`,
@@ -261,12 +264,12 @@ class RoomPage extends React.Component {
     })
       .then(response => {
         this.setState({
-          inviteCodeInRoom: `Многоразовый код: ${response.data}`
+          inviteCodeInRoom: `Reusable code: ${response.data}`
         })
       })
       .catch(error => {
         console.log(error);
-        toast.error("Не удалось получить инвайт код.");
+        toast.error("Oops, failed to get the invite code.");
       });
   }
 
@@ -280,12 +283,12 @@ class RoomPage extends React.Component {
     })
       .then(response => {
         this.setState({
-          inviteCodeInRoom: `Хочешь пригласить друзей?`
+          inviteCodeInRoom: `Do you want to invite friends?`
         })
       })
       .catch(error => {
         console.log(error);
-        toast.error("Не удалось закрыть инвайт код.");
+        toast.error("Oops, failed to close the invite code.");
       });
   }
 
@@ -309,7 +312,7 @@ class RoomPage extends React.Component {
       })
       .catch(error => {
         console.log(error);
-        toast.error("Не удалось изменить название комнаты.");
+        toast.error("Oops, failed to rename the room.");
       });
   }
 
@@ -326,12 +329,12 @@ class RoomPage extends React.Component {
           isOpenRoomSettings: false,
           isOpenRoomDeleteConfirm: false
         })
-        toast.success("Комната успешно удалена.");
+        toast.success("The room succesfully removed.");
         this.props.history.push("/rooms");
       })
       .catch(error => {
         console.log(error);
-        toast.error("Не удалось удалить комнату.");
+        toast.error("Oops, failed to remove the room.");
       });
   }
 
@@ -347,12 +350,12 @@ class RoomPage extends React.Component {
         this.setState({
           isOpenRoomLeaveConfirm: false
         })
-        toast.success(`Вы успешно покинули комнату "${response.data.name}".`);
+        toast.success(`You have succesfully left the "${response.data.name}".`);
         this.props.history.push("/rooms");
       })
       .catch(error => {
         console.log(error);
-        toast.error("Не удалось покинуть комнату.");
+        toast.error("Oops, failed to leave the room.");
       });
   }
 
@@ -379,7 +382,7 @@ class RoomPage extends React.Component {
       })
       .catch(error => {
         console.log(error);
-        toast.error("Не удалось отправить сообщение.");
+        toast.error("Oops, failed to send message.");
       });
   }
 
@@ -440,18 +443,18 @@ class RoomPage extends React.Component {
 
         <div className={roomId ? "inputUrl" : "hidden"}>
         { this.state.isOwner ?
-            <Button style={{float: 'left'}} onClick={this.updateRoomSettingState}>Настройки</Button>
+            <Button style={{float: 'left'}} onClick={this.updateRoomSettingState}>Settings</Button>
             : 
             ''
           }
           <label>Url:</label>
           <input value={this.props.roomStore.url} onChange={(event) => this.handleUpdateUrl(event.target.value)} />
-          <Button variant='secondary' style={{float: 'right'}} onClick={this.onUpdateRoomLeaveConfirmState}>Выйти</Button>
+          <Button variant='secondary' style={{float: 'right'}} onClick={this.onUpdateRoomLeaveConfirmState}>Leave</Button>
         </div>
 
         <div className="content">
           <div className={roomId ? "hidden" : "headerList"}>
-            <h2>Список комнат:</h2>
+            <h2>List of rooms:</h2>
             <input className="searchInput" type="text" className="searchInput" placeholder="Search..." onChange={(event) => this.handleUpdateSearch(event.target.value)} />
           </div>
 
@@ -474,8 +477,8 @@ class RoomPage extends React.Component {
           <div className={roomId && this.state.isOwner ? "invite" : "hidden"}>
             <h5>{this.state.inviteCodeInRoom}</h5>
               <Button 
-                onClick={this.state.inviteCodeInRoom === 'Хочешь пригласить друзей?' ? this.getInviteCode : this.closeInvite}>
-                  {this.state.inviteCodeInRoom === 'Хочешь пригласить друзей?' ? 'Invite code' : 'Close invite'}
+                onClick={this.state.inviteCodeInRoom === 'Do you want to invite friends?' ? this.getInviteCode : this.closeInvite}>
+                  {this.state.inviteCodeInRoom === 'Do you want to invite friends?' ? 'Invite code' : 'Close invite'}
               </Button>
           </div>
         </div>

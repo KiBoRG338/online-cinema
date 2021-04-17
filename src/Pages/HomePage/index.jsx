@@ -28,10 +28,10 @@ class HomePage extends Component {
             }
           </div>
         </nav>
-        {/* <div className="row">
+        <div className="row">
           <div className="side">...</div>
           <div className="main">...</div>
-        </div> */}
+        </div>
         <div className="content">
           Content
         </div>

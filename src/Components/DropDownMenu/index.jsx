@@ -16,12 +16,12 @@ class DropDownMenu extends Component {
 
                     <Dropdown.Menu>
                         {updateInviteState ?
-                        <Dropdown.Item onClick={updateInviteState}>Ввести инвайт-код...</Dropdown.Item>
+                        <Dropdown.Item onClick={updateInviteState}>Enter the invite-code</Dropdown.Item>
                         :
                         ''
                         }
-                        <Dropdown.Item href="#/action-2">Настройки</Dropdown.Item>
-                        <Dropdown.Item onClick={this.props.logoutUser}>Выйти</Dropdown.Item>
+                        {/* <Dropdown.Item href="#/action-2">Settings</Dropdown.Item> */}
+                        <Dropdown.Item onClick={this.props.logoutUser}>Log out</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
         )

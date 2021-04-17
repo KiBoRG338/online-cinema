@@ -17,9 +17,9 @@ export const userPostFetch = user => {
         .then(resp => resp.json())
         .then(response => {
             if (response.message) {
-              toast.error(`Что-то пошло не так с регистрацией...`);
+              toast.error(`Something went wrong with the registration...`);
             } else {
-              toast.success(`Вы успешно зарегистрированы.`);
+              toast.success(`You have succesfully registered.`);
             }
         })
     }
@@ -38,7 +38,7 @@ export const userPostFetch = user => {
         .then(resp => resp.json())
         .then(response => {
           if (response.message) {
-            toast.error(`Логин или пароль неверный.`);
+            toast.error(`Login or password is invalid.`);
           } else {
             localStorage.setItem("token", response.data.token);
             dispatch(loginUser(response.data.user));
@@ -63,7 +63,7 @@ export const userPostFetch = user => {
             .then(response => {
             if (response.message) {
                 localStorage.removeItem("token");
-                toast.error(`Вы не авторизованы.`);
+                toast.error(`You have not authorized.`);
             } else {
                 dispatch(loginUser({id: response.data._id, username: response.data.username, type: response.data.type}))
             }

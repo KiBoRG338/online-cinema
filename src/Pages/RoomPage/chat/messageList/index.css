@@ -10,19 +10,24 @@
 }
 
 .sender{
-    color: red;
+    color: blue;
 }
 
 .recipient{
-    color: blue;
+    color: red;
 }
 
 .message{
     margin: 0px 0;
-    background-color: #1ABC9C;
+    background-color: #303f9f;
     padding: 4px 8px;
     border-radius: 8px;
     color: White;
     white-space: pre-wrap;
     overflow: hidden;
+}
+
+.date{
+    color: darkgray;
+    font-size: 10px;
 }

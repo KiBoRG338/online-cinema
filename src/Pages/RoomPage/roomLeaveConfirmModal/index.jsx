@@ -6,17 +6,17 @@ export default function RoomLeaveConfirmModal(props) {
     return (
         <Modal show={isOpen} onHide={onUpdateRoomLeaveConfirmState}>
           <Modal.Header closeButton>
-            <Modal.Title>Выход из комнаты</Modal.Title>
+            <Modal.Title>Exiting from the room</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>Вы действительно хотите выйти из данной комнаты ?</p>
+            <p>Do you really want to leave the room ?</p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={onUpdateRoomLeaveConfirmState}>
-              Нет
+              No
             </Button>
             <Button variant="primary" onClick={onLeaveFromRoom}>
-              Да
+              Yes
             </Button>
           </Modal.Footer>
         </Modal>

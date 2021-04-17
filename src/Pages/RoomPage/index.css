@@ -73,13 +73,13 @@
   }
   
   .enterRoom:hover {
-    background-color: #1abc9c;
+    background-color: #303f9f;
     color: white;
   }
   
   /* Style the header */
   .headerList {
-    background-color: #1abc9c;
+    background-color: #303f9f;
     padding: 10px 40px 20px;
     color: white;
     text-align: center;
@@ -109,7 +109,7 @@
     height: 100%;
     text-align: center;
     padding: 5px;
-    background-color: #1abc9c;
+    background-color: #303f9f;
   }
 
   .createRoomButton {
@@ -119,7 +119,7 @@
   }
 
   .invite {
-    background-color: #1abc9c;
+    background-color: #303f9f;
     padding: 20px 40px;
     color: white;
     text-align: center;
@@ -128,7 +128,7 @@
   div .inputUrl{
     padding: 10px; /* some padding */
     text-align: center; /* center the text */
-    background: #1abc9c; /* green background */
+    background: #303f9f; /* green background */
     color: white; /* white text color */
 }
 

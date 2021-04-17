@@ -8,7 +8,7 @@ function roomList (props) {
     const showRooms = (item, key) => {
         return (
             <li key={key}>{item.name}
-                <a href={`${ROOM_ROUTE}/${item.id}`} className="enterRoom">Войти</a>
+                <a href={`${ROOM_ROUTE}/${item.id}`} className="enterRoom">Enter</a>
             </li>
         )
     }
@@ -20,7 +20,7 @@ function roomList (props) {
     }
     
     if(roomList.length < 1){
-        return <p style={{textAlign: 'center'}}>Вы ещё не присоединились ни к какой комнате.</p>
+        return <p style={{textAlign: 'center'}}>You haven't joined any room yet.</p>
     }
     
     return <ul className="theList">{roomList}</ul>;

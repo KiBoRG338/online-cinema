@@ -6,12 +6,12 @@ export default function RoomSettingsModal(props) {
     return (
         <Modal show={isOpen} onHide={updateRoomSettingState}>
           <Modal.Header closeButton>
-            <Modal.Title>Настройки комнаты</Modal.Title>
+            <Modal.Title>Settings of the room</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form.Control defaultValue={roomName} type="text" placeholder="Enter room name" onChange={(event) => handleUpdateRoomName(event.target.value)} />
             <br/>
-            <Button variant="primary" onClick={onUpdateRoomDeleteConfirmState}>Удалить комнату</Button>
+            <Button variant="primary" onClick={onUpdateRoomDeleteConfirmState}>Delete the room</Button>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={updateRoomSettingState}>
